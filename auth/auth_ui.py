@@ -64,6 +64,11 @@ background:#0ea5e9;
 color:white;
 }
 
+/* HIDE STREAMLIT FORM SUBMIT HINT */
+div[data-testid="InputInstructions"]{
+display:none !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
