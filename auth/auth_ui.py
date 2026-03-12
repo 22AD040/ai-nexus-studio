@@ -20,7 +20,7 @@ div[data-testid="stTextInput"]{
 width:100% !important;
 }
 
-/* INPUT FIELD */
+/* FIX TEXT INPUT */
 div[data-testid="stTextInput"] input{
 width:100% !important;
 height:48px !important;
@@ -30,14 +30,15 @@ background:#1e293b !important;
 color:white !important;
 padding-left:12px !important;
 font-size:16px !important;
+box-sizing:border-box !important;
 }
 
-/* PASSWORD FIX */
+/* FIX PASSWORD FIELD WRAPPER */
 div[data-testid="stTextInput"] > div{
-display:flex !important;
-align-items:center !important;
+width:100% !important;
 }
 
+/* FIX PASSWORD EYE BUTTON */
 div[data-testid="stTextInput"] button{
 background:#1e293b !important;
 border:none !important;
