@@ -1,15 +1,13 @@
 import sqlite3
-import bcrypt
-
-DB_PATH = "database/users.db"
+import hashlib
 
 
 def create_table():
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+    conn = sqlite3.connect("users.db")
+    c = conn.cursor()
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS users(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         fullname TEXT,
         email TEXT UNIQUE,
@@ -21,44 +19,51 @@ def create_table():
     conn.close()
 
 
+# HASH PASSWORD
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+
+# REGISTER USER
 def register_user(fullname, email, password):
 
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+    conn = sqlite3.connect("users.db")
+    c = conn.cursor()
 
-    hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    hashed_password = hash_password(password)
 
     try:
-        cursor.execute(
-            "INSERT INTO users (fullname,email,password) VALUES (?,?,?)",
-            (fullname, email, hashed)
+        c.execute(
+            "INSERT INTO users(fullname,email,password) VALUES(?,?,?)",
+            (fullname, email, hashed_password)
         )
-
         conn.commit()
+        conn.close()
         return True
 
-    except:
+    except sqlite3.IntegrityError:
+        conn.close()
         return False
 
-    finally:
-        conn.close()
 
-
+# LOGIN USER
 def login_user(email, password):
 
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
+    conn = sqlite3.connect("users.db")
+    c = conn.cursor()
 
-    cursor.execute(
-        "SELECT password FROM users WHERE email=?",
-        (email,)
+    hashed_password = hash_password(password)
+
+    c.execute(
+        "SELECT * FROM users WHERE email=? AND password=?",
+        (email, hashed_password)
     )
 
-    data = cursor.fetchone()
+    data = c.fetchone()
+
     conn.close()
 
     if data:
-        if bcrypt.checkpw(password.encode(), data[0]):
-            return True
-
-    return False
+        return True
+    else:
+        return False
