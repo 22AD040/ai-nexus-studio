@@ -22,8 +22,8 @@ align-items:center !important;
 background:#1e293b !important;
 border:2px solid #38bdf8 !important;
 border-radius:10px !important;
-height:48px !important;
-padding-left:12px !important;
+padding:8px 12px !important;
+min-height:48px !important;
 }
 
 /* INPUT FIELD */
@@ -68,16 +68,13 @@ color:white;
 """, unsafe_allow_html=True)
 
 
-    # LOGO
     col1, col2, col3 = st.columns([3,1,3])
     with col2:
-        st.image("assets/logo.png", width=180)
-
+        st.image("assets/logo.png", width=220)
 
     st.markdown("<div class='title'>AI Nexus Studio</div>", unsafe_allow_html=True)
 
 
-    # CENTER FORM
     left, center, right = st.columns([4,2,4])
 
     with center:
@@ -89,49 +86,64 @@ color:white;
 
             st.subheader("Login")
 
-            email = st.text_input(
-                "Email",
-                placeholder="Enter your email"
-            )
+            with st.form("login_form"):
 
-            password = st.text_input(
-                "Password",
-                type="password",
-                placeholder="Enter your password"
-            )
+                email = st.text_input(
+                    "Email",
+                    placeholder="Enter your email"
+                )
 
-            if st.button("Login", use_container_width=True):
+                password = st.text_input(
+                    "Password",
+                    type="password",
+                    placeholder="Enter your password"
+                )
 
-                if login_user(email, password):
+                login_btn = st.form_submit_button("Login", use_container_width=True)
 
-                    st.session_state.logged_in = True
-                    st.session_state.email = email
+                if login_btn:
 
-                    st.success("Login Successful")
-                    st.rerun()
+                    if login_user(email, password):
 
-                else:
-                    st.error("Invalid login")
+                        st.session_state.logged_in = True
+                        st.session_state.email = email
+
+                        st.success("Login Successful")
+                        st.rerun()
+
+                    else:
+                        st.error("Invalid login")
 
 
         else:
 
             st.subheader("Register")
 
-            fullname = st.text_input("Full Name")
+            with st.form("register_form"):
 
-            email = st.text_input("Email Address")
+                fullname = st.text_input(
+                    "Full Name",
+                    placeholder="Enter your full name"
+                )
 
-            password = st.text_input(
-                "Password",
-                type="password"
-            )
+                email = st.text_input(
+                    "Email Address",
+                    placeholder="Enter your email"
+                )
 
-            if st.button("Register", use_container_width=True):
+                password = st.text_input(
+                    "Password",
+                    type="password",
+                    placeholder="Create a password"
+                )
 
-                success = register_user(fullname, email, password)
+                register_btn = st.form_submit_button("Register", use_container_width=True)
 
-                if success:
-                    st.success("Registration successful! Please login.")
-                else:
-                    st.error("Email already exists")
+                if register_btn:
+
+                    success = register_user(fullname, email, password)
+
+                    if success:
+                        st.success("Registration successful! Please login.")
+                    else:
+                        st.error("Email already exists")

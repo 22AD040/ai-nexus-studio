@@ -19,12 +19,12 @@ def create_table():
     conn.close()
 
 
-# HASH PASSWORD
+
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 
-# REGISTER USER
+
 def register_user(fullname, email, password):
 
     conn = sqlite3.connect("users.db")
@@ -46,7 +46,7 @@ def register_user(fullname, email, password):
         return False
 
 
-# LOGIN USER
+
 def login_user(email, password):
 
     conn = sqlite3.connect("users.db")
