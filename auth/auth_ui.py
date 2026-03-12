@@ -16,7 +16,7 @@ def auth_page():
     /* Title */
     .title-text {
         text-align:center;
-        font-size:150px;
+        font-size:85px;
         font-weight:650;
         color:#38bdf8;
         margin-top:10px;
@@ -25,13 +25,13 @@ def auth_page():
     /* Labels */
     label {
         color: white !important;
-        font-size:20px !important;
+        font-size:18px !important;
         font-weight:600;
     }
 
     /* Login/Register radio bigger */
     .stRadio label {
-    font-size:30px !important;
+    font-size:22px !important;
     font-weight:700 !important;
     }
 
@@ -39,6 +39,44 @@ def auth_page():
     .stTextInput input {
     height:50px !important;
     font-size:18px !important;
+    border-radius:8px !important;
+    background-color:#1e293b;
+    color:white;
+    border:1px solid #38bdf8;
+    }
+
+    /* Placeholder */
+    .stTextInput input::placeholder {
+        color:#cbd5f5;
+    }
+
+    /* Buttons */
+    .stButton button {
+        height:50px !important;
+        font-size:18px !important;
+        font-weight:700;
+        border-radius:8px;
+        border:none;
+        background:#38bdf8;
+        color:black;
+    }
+
+    .stButton button:hover {
+        background:#0ea5e9;
+        color:white;
+    }
+
+    /* Subheaders */
+    h3 {
+        color:#38bdf8 !important;
+        font-weight:700;
+        font-size:26px;
+    }
+
+    /* Radio text color */
+    div[role="radiogroup"] label {
+        color:#ffffff !important;
+        font-weight:700 !important;
     }
 
     /* Email + Password input bigger */
@@ -65,51 +103,6 @@ def auth_page():
     .stRadio label {
         color:white !important;
         font-weight:500;
-    }
-
-    /* FORCE LOGIN / REGISTER TEXT BRIGHT WHITE */
-    div[role="radiogroup"] label {
-    color:#ffffff !important;
-    font-weight:700 !important;
-    opacity:1 !important;
-    }
-
-    /* Text input fields */
-    .stTextInput input {
-        background-color:#1e293b;
-        color:white;
-        border:1px solid #38bdf8;
-    }
-
-    /* Password field */
-    .stTextInput input::placeholder {
-        color:#cbd5f5;
-    }
-
-    /* Buttons */
-    .stButton button {
-        background:#38bdf8;
-        color:black;
-        font-weight:700;
-        border-radius:8px;
-        border:none;
-    }
-
-    .stButton button:hover {
-        background:#0ea5e9;
-        color:white;
-    }
-
-    /* FORCE RADIO TEXT BRIGHT WHITE */
-    div[role="radiogroup"] > label > div {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    opacity: 1 !important;
-    }
-
-    /* also ensure radio container text bright */
-    div[role="radiogroup"] {
-    color: white !important;
     }
 
     </style>
