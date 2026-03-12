@@ -16,10 +16,10 @@ def auth_page():
     /* Title */
     .title-text {
         text-align:center;
-        font-size:85px;
+        font-size:70px;
         font-weight:650;
         color:#38bdf8;
-        margin-top:10px;
+        margin-top:5px;
     }
 
     /* Labels */
@@ -29,20 +29,21 @@ def auth_page():
         font-weight:600;
     }
 
-    /* Login/Register radio bigger */
+    /* Login/Register radio */
     .stRadio label {
-    font-size:22px !important;
-    font-weight:700 !important;
+        font-size:20px !important;
+        font-weight:700 !important;
     }
 
-    /* Input fields bigger */
+    /* Input fields */
     .stTextInput input {
-    height:50px !important;
-    font-size:18px !important;
-    border-radius:8px !important;
-    background-color:#1e293b;
-    color:white;
-    border:1px solid #38bdf8;
+        height:50px !important;
+        font-size:18px !important;
+        border-radius:8px !important;
+        background-color:#1e293b;
+        color:white;
+        border:1px solid #38bdf8;
+        width:100% !important;
     }
 
     /* Placeholder */
@@ -59,6 +60,7 @@ def auth_page():
         border:none;
         background:#38bdf8;
         color:black;
+        width:100%;
     }
 
     .stButton button:hover {
@@ -70,7 +72,7 @@ def auth_page():
     h3 {
         color:#38bdf8 !important;
         font-weight:700;
-        font-size:26px;
+        font-size:24px;
     }
 
     /* Radio text color */
@@ -79,44 +81,20 @@ def auth_page():
         font-weight:700 !important;
     }
 
-    /* Email + Password input bigger */
-    .stTextInput input {
-    height:50px !important;
-    font-size:18px !important;
-    border-radius:8px !important;
-    }
-
-    /* Login button bigger */
-    .stButton button {
-    height:50px !important;
-    font-size:18px !important;
-    font-weight:600;
-    }
-
-    /* Subheaders */
-    h3 {
-        color:#38bdf8 !important;
-        font-weight:700;
-    }
-
-    /* Radio buttons */
-    .stRadio label {
-        color:white !important;
-        font-weight:500;
-    }
-
     </style>
     """, unsafe_allow_html=True)
 
 
 
-    left, center, right = st.columns([3,2,3])
+    # -------- CENTER LOGO --------
+    left, center, right = st.columns([4,1.2,4])
 
     with center:
-        st.image("assets/logo.png", width=500)
+        st.image("assets/logo.png", width=160)
 
 
 
+    # -------- TITLE --------
     st.markdown(
         "<div class='title-text'>AI Nexus Studio</div>",
         unsafe_allow_html=True
@@ -127,7 +105,8 @@ def auth_page():
     st.write("")
 
 
-    col1, col2, col3 = st.columns([1,2,1])
+    # -------- CENTER LOGIN AREA --------
+    col1, col2, col3 = st.columns([3.5,2,3.5])
 
     with col2:
 
