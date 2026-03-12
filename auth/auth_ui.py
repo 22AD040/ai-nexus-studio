@@ -19,23 +19,29 @@ def auth_page():
         font-weight:650;
         color:#38bdf8;
         margin-top:-10px;
-        margin-bottom:10px;
+        margin-bottom:5px;
     }
 
-    /* LABEL TEXT */
+    /* FORM CONTAINER */
+    .login-card{
+        max-width:420px;
+        margin:auto;
+    }
+
+    /* LABEL */
     label{
         color:white !important;
-        font-size:16px !important;
+        font-size:15px !important;
         font-weight:600;
     }
 
-    /* RADIO (Login/Register) */
+    /* RADIO */
     .stRadio label{
-        font-size:18px !important;
+        font-size:16px !important;
         font-weight:600 !important;
     }
 
-    /* INPUT FIELDS */
+    /* INPUT FIELD */
     .stTextInput input{
         height:45px !important;
         font-size:16px !important;
@@ -43,6 +49,7 @@ def auth_page():
         background:#1e293b !important;
         color:white !important;
         border:1px solid #38bdf8 !important;
+        width:100% !important;
     }
 
     /* PLACEHOLDER */
@@ -58,6 +65,7 @@ def auth_page():
         background:#38bdf8 !important;
         color:black !important;
         border-radius:8px !important;
+        width:100% !important;
     }
 
     .stButton button:hover{
@@ -73,7 +81,6 @@ def auth_page():
 
     </style>
     """, unsafe_allow_html=True)
-
 
 
     left, center, right = st.columns([3,1,3])
@@ -92,17 +99,18 @@ def auth_page():
     st.write("")
 
 
+    # ---------------- LOGIN FORM ----------------
+    left, center, right = st.columns([3,1.2,3])
 
-    col1, col2, col3 = st.columns([4,1.5,4])
+    with center:
 
-    with col2:
+        st.markdown("<div class='login-card'>", unsafe_allow_html=True)
 
         menu = st.radio(
             "Choose",
             ["Login", "Register"],
             horizontal=True
         )
-
 
         if menu == "Login":
 
@@ -144,3 +152,5 @@ def auth_page():
 
                 else:
                     st.error("Email already exists")
+
+        st.markdown("</div>", unsafe_allow_html=True)
