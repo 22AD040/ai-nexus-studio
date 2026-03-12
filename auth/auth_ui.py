@@ -5,111 +5,88 @@ from auth.auth_db import register_user, login_user
 def auth_page():
 
     st.markdown("""
-    <style>
+<style>
 
-    /* TITLE */
-    .title-text{
-        text-align:center;
-        font-size:60px;
-        font-weight:650;
-        color:#38bdf8;
-        margin-bottom:30px;
-    }
+.title{
+text-align:center;
+font-size:60px;
+font-weight:700;
+color:#38bdf8;
+margin-bottom:40px;
+}
 
-    /* LABELS */
-    label{
-        color:white !important;
-        font-size:16px !important;
-        font-weight:600;
-    }
+/* INPUT CONTAINER */
+div[data-testid="stTextInput"]{
+width:100% !important;
+}
 
-    /* RADIO */
-    .stRadio label{
-        font-size:17px !important;
-        font-weight:600 !important;
-    }
+/* INPUT FIELD */
+div[data-testid="stTextInput"] input{
+width:100% !important;
+height:48px !important;
+border-radius:10px !important;
+border:2px solid #38bdf8 !important;
+background:#1e293b !important;
+color:white !important;
+padding-left:12px !important;
+font-size:16px !important;
+}
 
-    /* INPUT CONTAINER */
-    div[data-testid="stTextInput"]{
-        width:100% !important;
-    }
+/* PASSWORD FIX */
+div[data-testid="stTextInput"] > div{
+display:flex !important;
+align-items:center !important;
+}
 
-    div[data-testid="stTextInput"] > div{
-        width:100% !important;
-    }
+div[data-testid="stTextInput"] button{
+background:#1e293b !important;
+border:none !important;
+}
 
-    div[data-testid="stTextInput"] input{
-        width:100% !important;
-        height:45px !important;
-        border-radius:8px !important;
-        border:1px solid #38bdf8 !important;
-        background:#1e293b !important;
-        color:white !important;
-        font-size:16px !important;
-        padding-left:12px !important;
-        box-sizing:border-box !important;
-    }
+/* BUTTON */
+.stButton button{
+height:48px;
+width:100%;
+font-size:17px;
+border-radius:10px;
+background:#38bdf8;
+color:black;
+font-weight:600;
+}
 
-    /* PASSWORD INPUT */
-    input[type="password"]{
-        width:100% !important;
-    }
+.stButton button:hover{
+background:#0ea5e9;
+color:white;
+}
 
-    /* BUTTON */
-    .stButton button{
-        height:45px !important;
-        font-size:16px !important;
-        font-weight:600 !important;
-        background:#38bdf8 !important;
-        color:black !important;
-        border-radius:8px !important;
-        width:100%;
-    }
-
-    .stButton button:hover{
-        background:#0ea5e9 !important;
-        color:white !important;
-    }
-
-    h3{
-        color:#38bdf8 !important;
-        font-size:22px;
-    }
-
-    </style>
-    """, unsafe_allow_html=True)
+</style>
+""", unsafe_allow_html=True)
 
 
-    # LOGO CENTER
-    c1, c2, c3 = st.columns([4,1,4])
+    col1, col2, col3 = st.columns([4,1,4])
 
-    with c2:
-        st.image("assets/logo.png", width=140)
-
-
-    st.markdown(
-        "<div class='title-text'>AI Nexus Studio</div>",
-        unsafe_allow_html=True
-    )
+    with col2:
+        st.image("assets/logo.png", width=220)
 
 
-    # CENTER FORM
+    st.markdown("<div class='title'>AI Nexus Studio</div>", unsafe_allow_html=True)
+
+
     left, center, right = st.columns([3,2,3])
 
     with center:
 
-        menu = st.radio(
-            "Choose",
-            ["Login", "Register"],
-            horizontal=True
-        )
+        menu = st.radio("Choose", ["Login", "Register"], horizontal=True)
 
 
         if menu == "Login":
 
             st.subheader("Login")
 
-            email = st.text_input("Email", placeholder="Enter your email")
+            email = st.text_input(
+                "Email",
+                placeholder="Enter your email"
+            )
 
             password = st.text_input(
                 "Password",
@@ -121,8 +98,8 @@ def auth_page():
 
                 if login_user(email, password):
 
-                    st.session_state["logged_in"] = True
-                    st.session_state["email"] = email
+                    st.session_state.logged_in = True
+                    st.session_state.email = email
 
                     st.success("Login Successful")
                     st.rerun()

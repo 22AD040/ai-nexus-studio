@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,7 +12,6 @@ from modules.data_nexus import data_page
 from modules.image_nexus import image_page
 from modules.knowledge_chatbot import chatbot_page
 
-
 create_table()
 
 st.set_page_config(
@@ -25,78 +23,28 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-.stApp {
-background: linear-gradient(135deg,#020617,#0f172a,#020617);
+.stApp{
+background:linear-gradient(135deg,#020617,#0f172a,#020617);
 color:white;
 }
 
-/* Headings */
-h1,h2,h3,h4,h5 {
+h1,h2,h3,h4{
 color:#38bdf8 !important;
 }
 
-/* Labels */
-label {
+label{
 color:white !important;
-font-weight:500;
 }
 
-/* Text Area */
-.stTextArea textarea{
-background:#1e293b;
-color:white;
-}
-
-/* Buttons */
 .stButton button{
 background:#38bdf8;
 color:black;
-font-weight:600;
 border-radius:8px;
+font-weight:600;
 }
 
-/* Sidebar */
-section[data-testid="stSidebar"] {
+section[data-testid="stSidebar"]{
 background:#020617;
-display:flex;
-flex-direction:column;
-}
-
-/* Sidebar spacing */
-section[data-testid="stSidebar"] button {
-margin-top:20px;
-}
-
-/* FILE UPLOADER */
-[data-testid="stFileUploader"] {
-background:white !important;
-padding:15px !important;
-border-radius:10px !important;
-}
-
-[data-testid="stFileUploader"] div {
-color:black !important;
-font-weight:600 !important;
-}
-
-[data-testid="stFileUploader"] button {
-background:#e5e7eb !important;
-color:black !important;
-font-weight:700 !important;
-border-radius:6px !important;
-}
-
-[data-testid="stFileUploader"] button span {
-color:black !important;
-}
-
-[data-testid="stFileUploader"] small {
-color:black !important;
-}
-
-div[data-testid="stDownloadButton"] button {
-color:black !important;
-background:white !important;
 }
 
 </style>
@@ -121,20 +69,19 @@ else:
         st.success(f"Welcome {username}")
 
         st.markdown("---")
-        st.markdown("### AI Tools")
 
         menu = st.selectbox(
-            "",
+            "AI Tools",
             [
                 "Research Nexus",
                 "Coding Nexus",
                 "Data Analysis Nexus",
                 "Image Analysis Nexus",
                 "Knowledge Chatbot",
-            ],
+            ]
         )
 
-        st.markdown("<div style='height:55vh'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='height:60vh'></div>", unsafe_allow_html=True)
 
         if st.button("Logout", use_container_width=True):
             st.session_state.logged_in = False
