@@ -19,10 +19,16 @@ def auth_page():
         font-weight:650;
         color:#38bdf8;
         margin-top:-10px;
-        margin-bottom:20px;
+        margin-bottom:25px;
     }
 
-    /* LABEL TEXT */
+    /* CENTER FORM CONTAINER */
+    .login-container {
+        max-width:520px;
+        margin:auto;
+    }
+
+    /* LABEL */
     label{
         color:white !important;
         font-size:16px !important;
@@ -31,13 +37,13 @@ def auth_page():
 
     /* RADIO */
     .stRadio label{
-        font-size:18px !important;
+        font-size:17px !important;
         font-weight:600 !important;
     }
 
-    /* INPUT FIELDS */
+    /* INPUT BOX */
     .stTextInput input{
-        height:45px !important;
+        height:48px !important;
         font-size:16px !important;
         border-radius:8px !important;
         background:#1e293b !important;
@@ -46,15 +52,20 @@ def auth_page():
         width:100% !important;
     }
 
+    /* PASSWORD ICON FIX */
+    div[data-testid="stTextInput"] > div {
+        width:100% !important;
+    }
+
     /* BUTTON */
     .stButton button{
-        height:45px !important;
+        height:48px !important;
         font-size:16px !important;
         font-weight:600 !important;
         background:#38bdf8 !important;
         color:black !important;
         border-radius:8px !important;
-        width:100%;
+        width:100% !important;
     }
 
     .stButton button:hover{
@@ -65,7 +76,7 @@ def auth_page():
     /* SUBHEADER */
     h3{
         color:#38bdf8 !important;
-        font-size:22px;
+        font-size:24px;
     }
 
     </style>
@@ -76,7 +87,7 @@ def auth_page():
     col1, col2, col3 = st.columns([3,1,3])
 
     with col2:
-        st.image("assets/logo.png", width=180)
+        st.image("assets/logo.png", width=200)
 
 
     # ---------- TITLE ----------
@@ -86,10 +97,10 @@ def auth_page():
     )
 
 
-    # ---------- FORM AREA ----------
-    left, center, right = st.columns([2,3,2])
+    # ---------- LOGIN FORM ----------
+    col1, col2, col3 = st.columns([3,2,3])
 
-    with center:
+    with col2:
 
         menu = st.radio(
             "Choose",
@@ -102,7 +113,10 @@ def auth_page():
 
             st.subheader("Login")
 
-            email = st.text_input("Email", placeholder="Enter your email")
+            email = st.text_input(
+                "Email",
+                placeholder="Enter your email"
+            )
 
             password = st.text_input(
                 "Password",
@@ -132,7 +146,10 @@ def auth_page():
 
             email = st.text_input("Email Address")
 
-            password = st.text_input("Password", type="password")
+            password = st.text_input(
+                "Password",
+                type="password"
+            )
 
             if st.button("Register", use_container_width=True):
 
@@ -140,6 +157,5 @@ def auth_page():
 
                 if success:
                     st.success("Registration successful! Please login.")
-
                 else:
                     st.error("Email already exists")
