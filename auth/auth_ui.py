@@ -24,7 +24,8 @@ def auth_page():
 
     /* FORM CONTAINER */
     .login-card{
-        max-width:420px;
+        max-width:520px;
+        width:100%;
         margin:auto;
     }
 
@@ -41,6 +42,10 @@ def auth_page():
         font-weight:600 !important;
     }
 
+    div[role="radiogroup"]{
+        justify-content:center;
+    }
+
     /* INPUT FIELD */
     .stTextInput input{
         height:45px !important;
@@ -49,6 +54,10 @@ def auth_page():
         background:#1e293b !important;
         color:white !important;
         border:1px solid #38bdf8 !important;
+        width:100% !important;
+    }
+
+    div[data-testid="stTextInput"]{
         width:100% !important;
     }
 
@@ -83,11 +92,11 @@ def auth_page():
     """, unsafe_allow_html=True)
 
 
-    left, center, right = st.columns([3,1,3])
+    # ---------- LOGO ----------
+    left, center, right = st.columns([1,2,1])
 
     with center:
         st.image("assets/logo.png", width=220)
-
 
 
     st.markdown(
@@ -100,7 +109,7 @@ def auth_page():
 
 
     # ---------------- LOGIN FORM ----------------
-    left, center, right = st.columns([3,1.2,3])
+    left, center, right = st.columns([1,3,1])
 
     with center:
 
