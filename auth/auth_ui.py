@@ -19,75 +19,68 @@ def auth_page():
         font-weight:650;
         color:#38bdf8;
         margin-top:-10px;
-        margin-bottom:40px;
+        margin-bottom:30px;
     }
 
-    /* LABEL */
-    label{
-        color:white !important;
-        font-size:16px !important;
-        font-weight:600;
+    /* CARD STYLE */
+    .card{
+        padding:35px;
+        border-radius:14px;
+        background:rgba(15,23,42,0.6);
+        backdrop-filter: blur(10px);
+        border:1px solid rgba(56,189,248,0.2);
     }
 
-    /* RADIO */
-    .stRadio label{
-        font-size:17px !important;
-        font-weight:600 !important;
-    }
-
-    /* INPUT STYLE */
+    /* INPUT */
     div[data-testid="stTextInput"] input{
-        height:48px;
-        font-size:16px;
-        border-radius:8px;
-        background:#1e293b;
-        color:white;
-        border:1px solid #38bdf8;
+        height:46px !important;
+        font-size:15px !important;
+        border-radius:8px !important;
+        background:#1e293b !important;
+        color:white !important;
+        border:1px solid #38bdf8 !important;
     }
 
     /* BUTTON */
     .stButton button{
-        height:48px;
-        font-size:16px;
-        font-weight:600;
-        background:#38bdf8;
-        color:black;
-        border-radius:8px;
+        height:46px !important;
+        font-size:16px !important;
+        font-weight:600 !important;
+        background:#38bdf8 !important;
+        color:black !important;
+        border-radius:8px !important;
         width:100%;
     }
 
     .stButton button:hover{
-        background:#0ea5e9;
-        color:white;
+        background:#0ea5e9 !important;
+        color:white !important;
     }
 
     h3{
         color:#38bdf8 !important;
-        font-size:24px;
     }
 
     </style>
     """, unsafe_allow_html=True)
 
+    # ---------- LOGO CENTER ----------
+    c1, c2, c3 = st.columns([3,1,3])
+    with c2:
+        st.image("assets/logo.png", width=180)
 
-    # -------- LOGO --------
-    col1, col2, col3 = st.columns([4,1,4])
-
-    with col2:
-        st.image("assets/logo.png", width=140)
-
-
-    # -------- TITLE --------
+    # ---------- TITLE ----------
     st.markdown(
         "<div class='title-text'>AI Nexus Studio</div>",
         unsafe_allow_html=True
     )
 
-
-    # -------- FORM AREA --------
-    left, center, right = st.columns([3,2,3])
+    # ---------- CENTER CARD ----------
+    left, center, right = st.columns([1,2,1])
 
     with center:
+
+        st.markdown("<div class='card'>", unsafe_allow_html=True)
 
         menu = st.radio(
             "Choose",
@@ -95,14 +88,12 @@ def auth_page():
             horizontal=True
         )
 
+        # ---------- LOGIN ----------
         if menu == "Login":
 
             st.subheader("Login")
 
-            email = st.text_input(
-                "Email",
-                placeholder="Enter your email"
-            )
+            email = st.text_input("Email", placeholder="Enter your email")
 
             password = st.text_input(
                 "Password",
@@ -123,6 +114,7 @@ def auth_page():
                 else:
                     st.error("Invalid login")
 
+        # ---------- REGISTER ----------
         else:
 
             st.subheader("Register")
@@ -144,3 +136,5 @@ def auth_page():
                     st.success("Registration successful! Please login.")
                 else:
                     st.error("Email already exists")
+
+        st.markdown("</div>", unsafe_allow_html=True)
