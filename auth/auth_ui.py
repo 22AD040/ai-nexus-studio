@@ -19,57 +19,46 @@ def auth_page():
         font-weight:650;
         color:#38bdf8;
         margin-top:-10px;
-        margin-bottom:30px;
-    }
-
-    /* CENTER CARD */
-    .login-card{
-        max-width:520px;
-        margin:auto;
-        padding:40px;
-        background:rgba(15,23,42,0.6);
-        border-radius:14px;
-        backdrop-filter: blur(10px);
-        border:1px solid rgba(56,189,248,0.2);
+        margin-bottom:40px;
     }
 
     /* LABEL */
     label{
         color:white !important;
-        font-size:15px !important;
+        font-size:16px !important;
         font-weight:600;
     }
 
     /* RADIO */
     .stRadio label{
-        font-size:16px !important;
+        font-size:17px !important;
         font-weight:600 !important;
     }
 
-    /* INPUT */
+    /* INPUT STYLE */
     div[data-testid="stTextInput"] input{
-        height:46px !important;
-        font-size:15px !important;
-        border-radius:8px !important;
-        background:#1e293b !important;
-        color:white !important;
-        border:1px solid #38bdf8 !important;
+        height:48px;
+        font-size:16px;
+        border-radius:8px;
+        background:#1e293b;
+        color:white;
+        border:1px solid #38bdf8;
     }
 
     /* BUTTON */
     .stButton button{
-        height:46px !important;
-        font-size:16px !important;
-        font-weight:600 !important;
-        background:#38bdf8 !important;
-        color:black !important;
-        border-radius:8px !important;
+        height:48px;
+        font-size:16px;
+        font-weight:600;
+        background:#38bdf8;
+        color:black;
+        border-radius:8px;
         width:100%;
     }
 
     .stButton button:hover{
-        background:#0ea5e9 !important;
-        color:white !important;
+        background:#0ea5e9;
+        color:white;
     }
 
     h3{
@@ -82,10 +71,10 @@ def auth_page():
 
 
     # -------- LOGO --------
-    col1, col2, col3 = st.columns([3,1,3])
+    col1, col2, col3 = st.columns([4,1,4])
 
     with col2:
-        st.image("assets/logo.png", width=220)
+        st.image("assets/logo.png", width=140)
 
 
     # -------- TITLE --------
@@ -95,62 +84,63 @@ def auth_page():
     )
 
 
-    # -------- LOGIN CARD --------
-    st.markdown("<div class='login-card'>", unsafe_allow_html=True)
+    # -------- FORM AREA --------
+    left, center, right = st.columns([3,2,3])
 
-    menu = st.radio(
-        "Choose",
-        ["Login", "Register"],
-        horizontal=True
-    )
+    with center:
 
-
-    if menu == "Login":
-
-        st.subheader("Login")
-
-        email = st.text_input("Email", placeholder="Enter your email")
-
-        password = st.text_input(
-            "Password",
-            type="password",
-            placeholder="Enter your password"
+        menu = st.radio(
+            "Choose",
+            ["Login", "Register"],
+            horizontal=True
         )
 
-        if st.button("Login", use_container_width=True):
+        if menu == "Login":
 
-            if login_user(email, password):
+            st.subheader("Login")
 
-                st.session_state["logged_in"] = True
-                st.session_state["email"] = email
+            email = st.text_input(
+                "Email",
+                placeholder="Enter your email"
+            )
 
-                st.success("Login Successful")
-                st.rerun()
+            password = st.text_input(
+                "Password",
+                type="password",
+                placeholder="Enter your password"
+            )
 
-            else:
-                st.error("Invalid login")
+            if st.button("Login", use_container_width=True):
 
+                if login_user(email, password):
 
-    else:
+                    st.session_state["logged_in"] = True
+                    st.session_state["email"] = email
 
-        st.subheader("Register")
+                    st.success("Login Successful")
+                    st.rerun()
 
-        fullname = st.text_input("Full Name")
+                else:
+                    st.error("Invalid login")
 
-        email = st.text_input("Email Address")
+        else:
 
-        password = st.text_input(
-            "Password",
-            type="password"
-        )
+            st.subheader("Register")
 
-        if st.button("Register", use_container_width=True):
+            fullname = st.text_input("Full Name")
 
-            success = register_user(fullname, email, password)
+            email = st.text_input("Email Address")
 
-            if success:
-                st.success("Registration successful! Please login.")
-            else:
-                st.error("Email already exists")
+            password = st.text_input(
+                "Password",
+                type="password"
+            )
 
-    st.markdown("</div>", unsafe_allow_html=True)
+            if st.button("Register", use_container_width=True):
+
+                success = register_user(fullname, email, password)
+
+                if success:
+                    st.success("Registration successful! Please login.")
+                else:
+                    st.error("Email already exists")
