@@ -19,34 +19,23 @@ def auth_page():
         font-weight:650;
         color:#38bdf8;
         margin-top:-10px;
-        margin-bottom:5px;
+        margin-bottom:20px;
     }
 
-    /* FORM CONTAINER */
-    .login-card{
-        max-width:520px;
-        width:100%;
-        margin:auto;
-    }
-
-    /* LABEL */
+    /* LABEL TEXT */
     label{
         color:white !important;
-        font-size:15px !important;
+        font-size:16px !important;
         font-weight:600;
     }
 
     /* RADIO */
     .stRadio label{
-        font-size:16px !important;
+        font-size:18px !important;
         font-weight:600 !important;
     }
 
-    div[role="radiogroup"]{
-        justify-content:center;
-    }
-
-    /* INPUT FIELD */
+    /* INPUT FIELDS */
     .stTextInput input{
         height:45px !important;
         font-size:16px !important;
@@ -57,15 +46,6 @@ def auth_page():
         width:100% !important;
     }
 
-    div[data-testid="stTextInput"]{
-        width:100% !important;
-    }
-
-    /* PLACEHOLDER */
-    .stTextInput input::placeholder{
-        color:#cbd5f5 !important;
-    }
-
     /* BUTTON */
     .stButton button{
         height:45px !important;
@@ -74,7 +54,7 @@ def auth_page():
         background:#38bdf8 !important;
         color:black !important;
         border-radius:8px !important;
-        width:100% !important;
+        width:100%;
     }
 
     .stButton button:hover{
@@ -93,27 +73,23 @@ def auth_page():
 
 
     # ---------- LOGO ----------
-    left, center, right = st.columns([1,2,1])
+    col1, col2, col3 = st.columns([3,1,3])
 
-    with center:
-        st.image("assets/logo.png", width=220)
+    with col2:
+        st.image("assets/logo.png", width=180)
 
 
+    # ---------- TITLE ----------
     st.markdown(
         "<div class='title-text'>AI Nexus Studio</div>",
         unsafe_allow_html=True
     )
 
 
-    st.write("")
-
-
-    # ---------------- LOGIN FORM ----------------
-    left, center, right = st.columns([1,3,1])
+    # ---------- FORM AREA ----------
+    left, center, right = st.columns([2,3,2])
 
     with center:
-
-        st.markdown("<div class='login-card'>", unsafe_allow_html=True)
 
         menu = st.radio(
             "Choose",
@@ -121,13 +97,18 @@ def auth_page():
             horizontal=True
         )
 
+
         if menu == "Login":
 
             st.subheader("Login")
 
-            email = st.text_input("Email")
+            email = st.text_input("Email", placeholder="Enter your email")
 
-            password = st.text_input("Password", type="password")
+            password = st.text_input(
+                "Password",
+                type="password",
+                placeholder="Enter your password"
+            )
 
             if st.button("Login", use_container_width=True):
 
@@ -141,6 +122,7 @@ def auth_page():
 
                 else:
                     st.error("Invalid login")
+
 
         else:
 
@@ -161,5 +143,3 @@ def auth_page():
 
                 else:
                     st.error("Email already exists")
-
-        st.markdown("</div>", unsafe_allow_html=True)
