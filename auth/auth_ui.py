@@ -15,30 +15,37 @@ color:#38bdf8;
 margin-bottom:40px;
 }
 
-/* INPUT FIELD */
-div[data-testid="stTextInput"] input{
-width:100% !important;
-height:48px !important;
-border-radius:10px !important;
-border:2px solid #38bdf8 !important;
-background:#1e293b !important;
-color:white !important;
-padding-left:12px !important;
-font-size:16px !important;
-box-sizing:border-box !important;
-}
-
-/* PASSWORD WRAPPER */
+/* TEXT INPUT WRAPPER */
 div[data-testid="stTextInput"] > div{
 display:flex !important;
 align-items:center !important;
+background:#1e293b !important;
+border:2px solid #38bdf8 !important;
+border-radius:10px !important;
+height:48px !important;
+padding-left:12px !important;
+}
+
+/* INPUT FIELD */
+div[data-testid="stTextInput"] input{
+background:transparent !important;
+border:none !important;
+color:white !important;
+font-size:16px !important;
 width:100% !important;
+}
+
+/* REMOVE STREAMLIT RED BORDER */
+input:focus{
+outline:none !important;
+box-shadow:none !important;
 }
 
 /* PASSWORD EYE BUTTON */
 div[data-testid="stTextInput"] button{
-background:#1e293b !important;
+background:transparent !important;
 border:none !important;
+margin-right:10px !important;
 }
 
 /* BUTTON */
@@ -64,7 +71,7 @@ color:white;
     # LOGO
     col1, col2, col3 = st.columns([3,1,3])
     with col2:
-        st.image("assets/logo.png", width=200)
+        st.image("assets/logo.png", width=180)
 
 
     st.markdown("<div class='title'>AI Nexus Studio</div>", unsafe_allow_html=True)
