@@ -7,11 +7,6 @@ def auth_page():
     st.markdown("""
     <style>
 
-    .stApp {
-        background: linear-gradient(135deg,#020617,#0f172a,#020617);
-        color:white;
-    }
-
     /* TITLE */
     .title-text{
         text-align:center;
@@ -21,23 +16,54 @@ def auth_page():
         margin-bottom:30px;
     }
 
-    /* INPUT BOX */
+    /* LABELS */
+    label{
+        color:white !important;
+        font-size:16px !important;
+        font-weight:600;
+    }
+
+    /* RADIO */
+    .stRadio label{
+        font-size:17px !important;
+        font-weight:600 !important;
+    }
+
+    /* INPUT CONTAINER */
+    div[data-testid="stTextInput"]{
+        width:100% !important;
+    }
+
+    div[data-testid="stTextInput"] > div{
+        width:100% !important;
+    }
+
     div[data-testid="stTextInput"] input{
-        height:46px !important;
+        width:100% !important;
+        height:45px !important;
         border-radius:8px !important;
+        border:1px solid #38bdf8 !important;
         background:#1e293b !important;
         color:white !important;
-        border:1px solid #38bdf8 !important;
+        font-size:16px !important;
+        padding-left:12px !important;
+        box-sizing:border-box !important;
+    }
+
+    /* PASSWORD INPUT */
+    input[type="password"]{
+        width:100% !important;
     }
 
     /* BUTTON */
     .stButton button{
-        height:46px !important;
+        height:45px !important;
         font-size:16px !important;
         font-weight:600 !important;
         background:#38bdf8 !important;
         color:black !important;
         border-radius:8px !important;
+        width:100%;
     }
 
     .stButton button:hover{
@@ -47,27 +73,28 @@ def auth_page():
 
     h3{
         color:#38bdf8 !important;
+        font-size:22px;
     }
 
     </style>
     """, unsafe_allow_html=True)
 
 
-    # -------- LOGO CENTER --------
-    col1, col2, col3 = st.columns([3,1,3])
-    with col2:
-        st.image("assets/logo.png", width=180)
+    # LOGO CENTER
+    c1, c2, c3 = st.columns([4,1,4])
+
+    with c2:
+        st.image("assets/logo.png", width=140)
 
 
-    # -------- TITLE --------
     st.markdown(
         "<div class='title-text'>AI Nexus Studio</div>",
         unsafe_allow_html=True
     )
 
 
-    # -------- CENTER FORM --------
-    left, center, right = st.columns([2,3,2])
+    # CENTER FORM
+    left, center, right = st.columns([3,2,3])
 
     with center:
 
@@ -77,14 +104,12 @@ def auth_page():
             horizontal=True
         )
 
+
         if menu == "Login":
 
             st.subheader("Login")
 
-            email = st.text_input(
-                "Email",
-                placeholder="Enter your email"
-            )
+            email = st.text_input("Email", placeholder="Enter your email")
 
             password = st.text_input(
                 "Password",

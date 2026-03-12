@@ -14,7 +14,6 @@ from modules.image_nexus import image_page
 from modules.knowledge_chatbot import chatbot_page
 
 
-
 create_table()
 
 st.set_page_config(
@@ -22,7 +21,6 @@ st.set_page_config(
     page_icon="🤖",
     layout="wide"
 )
-
 
 st.markdown("""
 <style>
@@ -41,12 +39,6 @@ color:#38bdf8 !important;
 label {
 color:white !important;
 font-weight:500;
-}
-
-/* Text Inputs */
-.stTextInput input{
-background:#1e293b;
-color:white;
 }
 
 /* Text Area */
@@ -70,25 +62,23 @@ display:flex;
 flex-direction:column;
 }
 
-/* Sidebar button spacing */
+/* Sidebar spacing */
 section[data-testid="stSidebar"] button {
 margin-top:20px;
 }
 
-/* FILE UPLOADER BOX */
+/* FILE UPLOADER */
 [data-testid="stFileUploader"] {
 background:white !important;
 padding:15px !important;
 border-radius:10px !important;
 }
 
-/* DRAG AND DROP TEXT */
 [data-testid="stFileUploader"] div {
 color:black !important;
 font-weight:600 !important;
 }
 
-/* BROWSE FILE BUTTON */
 [data-testid="stFileUploader"] button {
 background:#e5e7eb !important;
 color:black !important;
@@ -96,24 +86,21 @@ font-weight:700 !important;
 border-radius:6px !important;
 }
 
-/* FORCE BUTTON TEXT BLACK */
 [data-testid="stFileUploader"] button span {
 color:black !important;
 }
 
-/* FILE NAME TEXT */
 [data-testid="stFileUploader"] small {
 color:black !important;
 }
 
-/* Download button text fix */
 div[data-testid="stDownloadButton"] button {
 color:black !important;
 background:white !important;
 }
+
 </style>
 """, unsafe_allow_html=True)
-
 
 
 if "logged_in" not in st.session_state:
@@ -124,7 +111,6 @@ if not st.session_state.logged_in:
 
     auth_page()
 
-
 else:
 
     with st.sidebar:
@@ -132,11 +118,9 @@ else:
         st.markdown("## 🤖 AI Nexus Studio")
 
         username = st.session_state.email.split("@")[0]
-
         st.success(f"Welcome {username}")
 
         st.markdown("---")
-
         st.markdown("### AI Tools")
 
         menu = st.selectbox(
@@ -150,17 +134,11 @@ else:
             ],
         )
 
-        st.markdown(
-            """
-            <div style="height:55vh;"></div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("<div style='height:55vh'></div>", unsafe_allow_html=True)
 
         if st.button("Logout", use_container_width=True):
             st.session_state.logged_in = False
             st.rerun()
-
 
 
     if menu == "Research Nexus":
