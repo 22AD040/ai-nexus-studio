@@ -19,53 +19,52 @@ def auth_page():
         font-weight:650;
         color:#38bdf8;
         margin-top:-10px;
-        margin-bottom:25px;
+        margin-bottom:30px;
     }
 
-    /* CENTER FORM CONTAINER */
-    .login-container {
+    /* CENTER CARD */
+    .login-card{
         max-width:520px;
         margin:auto;
+        padding:40px;
+        background:rgba(15,23,42,0.6);
+        border-radius:14px;
+        backdrop-filter: blur(10px);
+        border:1px solid rgba(56,189,248,0.2);
     }
 
     /* LABEL */
     label{
         color:white !important;
-        font-size:16px !important;
+        font-size:15px !important;
         font-weight:600;
     }
 
     /* RADIO */
     .stRadio label{
-        font-size:17px !important;
+        font-size:16px !important;
         font-weight:600 !important;
     }
 
-    /* INPUT BOX */
-    .stTextInput input{
-        height:48px !important;
-        font-size:16px !important;
+    /* INPUT */
+    div[data-testid="stTextInput"] input{
+        height:46px !important;
+        font-size:15px !important;
         border-radius:8px !important;
         background:#1e293b !important;
         color:white !important;
         border:1px solid #38bdf8 !important;
-        width:100% !important;
-    }
-
-    /* PASSWORD ICON FIX */
-    div[data-testid="stTextInput"] > div {
-        width:100% !important;
     }
 
     /* BUTTON */
     .stButton button{
-        height:48px !important;
+        height:46px !important;
         font-size:16px !important;
         font-weight:600 !important;
         background:#38bdf8 !important;
         color:black !important;
         border-radius:8px !important;
-        width:100% !important;
+        width:100%;
     }
 
     .stButton button:hover{
@@ -73,7 +72,6 @@ def auth_page():
         color:white !important;
     }
 
-    /* SUBHEADER */
     h3{
         color:#38bdf8 !important;
         font-size:24px;
@@ -83,79 +81,76 @@ def auth_page():
     """, unsafe_allow_html=True)
 
 
-    # ---------- LOGO ----------
+    # -------- LOGO --------
     col1, col2, col3 = st.columns([3,1,3])
 
     with col2:
-        st.image("assets/logo.png", width=200)
+        st.image("assets/logo.png", width=220)
 
 
-    # ---------- TITLE ----------
+    # -------- TITLE --------
     st.markdown(
         "<div class='title-text'>AI Nexus Studio</div>",
         unsafe_allow_html=True
     )
 
 
-    # ---------- LOGIN FORM ----------
-    col1, col2, col3 = st.columns([3,2,3])
+    # -------- LOGIN CARD --------
+    st.markdown("<div class='login-card'>", unsafe_allow_html=True)
 
-    with col2:
+    menu = st.radio(
+        "Choose",
+        ["Login", "Register"],
+        horizontal=True
+    )
 
-        menu = st.radio(
-            "Choose",
-            ["Login", "Register"],
-            horizontal=True
+
+    if menu == "Login":
+
+        st.subheader("Login")
+
+        email = st.text_input("Email", placeholder="Enter your email")
+
+        password = st.text_input(
+            "Password",
+            type="password",
+            placeholder="Enter your password"
         )
 
+        if st.button("Login", use_container_width=True):
 
-        if menu == "Login":
+            if login_user(email, password):
 
-            st.subheader("Login")
+                st.session_state["logged_in"] = True
+                st.session_state["email"] = email
 
-            email = st.text_input(
-                "Email",
-                placeholder="Enter your email"
-            )
+                st.success("Login Successful")
+                st.rerun()
 
-            password = st.text_input(
-                "Password",
-                type="password",
-                placeholder="Enter your password"
-            )
-
-            if st.button("Login", use_container_width=True):
-
-                if login_user(email, password):
-
-                    st.session_state["logged_in"] = True
-                    st.session_state["email"] = email
-
-                    st.success("Login Successful")
-                    st.rerun()
-
-                else:
-                    st.error("Invalid login")
+            else:
+                st.error("Invalid login")
 
 
-        else:
+    else:
 
-            st.subheader("Register")
+        st.subheader("Register")
 
-            fullname = st.text_input("Full Name")
+        fullname = st.text_input("Full Name")
 
-            email = st.text_input("Email Address")
+        email = st.text_input("Email Address")
 
-            password = st.text_input(
-                "Password",
-                type="password"
-            )
+        password = st.text_input(
+            "Password",
+            type="password"
+        )
 
-            if st.button("Register", use_container_width=True):
+        if st.button("Register", use_container_width=True):
 
-                success = register_user(fullname, email, password)
+            success = register_user(fullname, email, password)
 
-                if success:
-                    st.success("Registration successful! Please login.")
-                else:
-                    st.error("Email already exists")
+            if success:
+                st.success("Registration successful! Please login.")
+            else:
+                st.error("Email already exists")
+
+    st.markdown("</div>", unsafe_allow_html=True)
