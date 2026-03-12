@@ -15,12 +15,7 @@ color:#38bdf8;
 margin-bottom:40px;
 }
 
-/* INPUT CONTAINER */
-div[data-testid="stTextInput"]{
-width:100% !important;
-}
-
-/* FIX TEXT INPUT */
+/* INPUT FIELD */
 div[data-testid="stTextInput"] input{
 width:100% !important;
 height:48px !important;
@@ -33,12 +28,14 @@ font-size:16px !important;
 box-sizing:border-box !important;
 }
 
-/* FIX PASSWORD FIELD WRAPPER */
+/* PASSWORD WRAPPER */
 div[data-testid="stTextInput"] > div{
+display:flex !important;
+align-items:center !important;
 width:100% !important;
 }
 
-/* FIX PASSWORD EYE BUTTON */
+/* PASSWORD EYE BUTTON */
 div[data-testid="stTextInput"] button{
 background:#1e293b !important;
 border:none !important;
@@ -64,16 +61,17 @@ color:white;
 """, unsafe_allow_html=True)
 
 
-    col1, col2, col3 = st.columns([4,1,4])
-
+    # LOGO
+    col1, col2, col3 = st.columns([3,1,3])
     with col2:
-        st.image("assets/logo.png", width=220)
+        st.image("assets/logo.png", width=200)
 
 
     st.markdown("<div class='title'>AI Nexus Studio</div>", unsafe_allow_html=True)
 
 
-    left, center, right = st.columns([3,2,3])
+    # CENTER FORM
+    left, center, right = st.columns([4,2,4])
 
     with center:
 
