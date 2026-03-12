@@ -4,81 +4,71 @@ from auth.auth_db import register_user, login_user
 
 def auth_page():
 
-    
     st.markdown("""
     <style>
 
     .stApp {
         background: linear-gradient(135deg,#020617,#0f172a,#020617);
-        color: white;
+        color:white;
     }
 
-    /* Title */
-    .title-text {
+    /* TITLE */
+    .title-text{
         text-align:center;
-        font-size:70px;
+        font-size:60px;
         font-weight:650;
         color:#38bdf8;
-        margin-top:5px;
+        margin-top:-10px;
+        margin-bottom:10px;
     }
 
-    /* Labels */
-    label {
-        color: white !important;
-        font-size:18px !important;
+    /* LABEL TEXT */
+    label{
+        color:white !important;
+        font-size:16px !important;
         font-weight:600;
     }
 
-    /* Login/Register radio */
-    .stRadio label {
-        font-size:20px !important;
-        font-weight:700 !important;
+    /* RADIO (Login/Register) */
+    .stRadio label{
+        font-size:18px !important;
+        font-weight:600 !important;
     }
 
-    /* Input fields */
-    .stTextInput input {
-        height:50px !important;
-        font-size:18px !important;
+    /* INPUT FIELDS */
+    .stTextInput input{
+        height:45px !important;
+        font-size:16px !important;
         border-radius:8px !important;
-        background-color:#1e293b;
-        color:white;
-        border:1px solid #38bdf8;
-        width:100% !important;
+        background:#1e293b !important;
+        color:white !important;
+        border:1px solid #38bdf8 !important;
     }
 
-    /* Placeholder */
-    .stTextInput input::placeholder {
-        color:#cbd5f5;
+    /* PLACEHOLDER */
+    .stTextInput input::placeholder{
+        color:#cbd5f5 !important;
     }
 
-    /* Buttons */
-    .stButton button {
-        height:50px !important;
-        font-size:18px !important;
-        font-weight:700;
-        border-radius:8px;
-        border:none;
-        background:#38bdf8;
-        color:black;
-        width:100%;
+    /* BUTTON */
+    .stButton button{
+        height:45px !important;
+        font-size:16px !important;
+        font-weight:600 !important;
+        background:#38bdf8 !important;
+        color:black !important;
+        border-radius:8px !important;
     }
 
-    .stButton button:hover {
-        background:#0ea5e9;
-        color:white;
+    .stButton button:hover{
+        background:#0ea5e9 !important;
+        color:white !important;
     }
 
-    /* Subheaders */
-    h3 {
+    /* SUBHEADER */
+    h3{
         color:#38bdf8 !important;
-        font-weight:700;
-        font-size:24px;
-    }
-
-    /* Radio text color */
-    div[role="radiogroup"] label {
-        color:#ffffff !important;
-        font-weight:700 !important;
+        font-size:22px;
     }
 
     </style>
@@ -86,15 +76,13 @@ def auth_page():
 
 
 
-    # -------- CENTER LOGO --------
-    left, center, right = st.columns([4,1.2,4])
+    left, center, right = st.columns([3,1,3])
 
     with center:
-        st.image("assets/logo.png", width=160)
+        st.image("assets/logo.png", width=220)
 
 
 
-    # -------- TITLE --------
     st.markdown(
         "<div class='title-text'>AI Nexus Studio</div>",
         unsafe_allow_html=True
@@ -102,11 +90,10 @@ def auth_page():
 
 
     st.write("")
-    st.write("")
 
 
-    # -------- CENTER LOGIN AREA --------
-    col1, col2, col3 = st.columns([3.5,2,3.5])
+
+    col1, col2, col3 = st.columns([4,1.5,4])
 
     with col2:
 
