@@ -25,7 +25,7 @@ This project demonstrates a **real-world Generative AI application architecture*
 Try the deployed application:
 
 🔗 **Streamlit App**
-https://ai-nexus-studio.streamlit.app/
+https://ai-nexus-studio-mryvn3qwb48elhtccnjwqz.streamlit.app/
 
 ---
 
