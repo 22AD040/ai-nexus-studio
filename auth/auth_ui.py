@@ -4,7 +4,7 @@ from auth.auth_db import register_user, login_user
 
 def auth_page():
 
-    st.markdown("""
+st.markdown("""
 <style>
 
 .title{
@@ -15,37 +15,32 @@ color:#38bdf8;
 margin-bottom:40px;
 }
 
-/* TEXT INPUT WRAPPER */
-div[data-testid="stTextInput"] > div{
-display:flex !important;
-align-items:center !important;
+/* INPUT CONTAINER */
+div[data-baseweb="input"]{
 background:#1e293b !important;
 border:2px solid #38bdf8 !important;
 border-radius:10px !important;
-padding:8px 12px !important;
-min-height:48px !important;
+padding:6px 10px !important;
 }
 
 /* INPUT FIELD */
-div[data-testid="stTextInput"] input{
+div[data-baseweb="input"] input{
 background:transparent !important;
 border:none !important;
 color:white !important;
 font-size:16px !important;
-width:100% !important;
 }
 
-/* REMOVE STREAMLIT RED BORDER */
-input:focus{
-outline:none !important;
+/* REMOVE DEFAULT STREAMLIT INPUT BORDER */
+div[data-baseweb="input"]:focus-within{
+border:2px solid #0ea5e9 !important;
 box-shadow:none !important;
 }
 
-/* PASSWORD EYE BUTTON */
-div[data-testid="stTextInput"] button{
-background:transparent !important;
-border:none !important;
-margin-right:10px !important;
+/* REMOVE RED ERROR BORDER */
+input:focus{
+outline:none !important;
+box-shadow:none !important;
 }
 
 /* BUTTON */
@@ -57,6 +52,7 @@ border-radius:10px;
 background:#38bdf8;
 color:black;
 font-weight:600;
+border:none;
 }
 
 .stButton button:hover{
@@ -64,8 +60,8 @@ background:#0ea5e9;
 color:white;
 }
 
-/* HIDE STREAMLIT FORM SUBMIT HINT */
-div[data-testid="InputInstructions"]{
+/* REMOVE FORM HINT TEXT COMPLETELY */
+[data-testid="InputInstructions"]{
 display:none !important;
 }
 
@@ -75,7 +71,7 @@ display:none !important;
 
     col1, col2, col3 = st.columns([3,1,3])
     with col2:
-        st.image("assets/logo.png", width=220)
+        st.image("assets/logo.png", width=250)
 
     st.markdown("<div class='title'>AI Nexus Studio</div>", unsafe_allow_html=True)
 
