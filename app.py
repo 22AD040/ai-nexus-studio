@@ -12,14 +12,20 @@ from modules.data_nexus import data_page
 from modules.image_nexus import image_page
 from modules.knowledge_chatbot import chatbot_page
 
+
+# Create DB
 create_table()
 
+
+# Page settings
 st.set_page_config(
     page_title="AI Nexus Studio",
     page_icon="🤖",
     layout="wide"
 )
 
+
+# Global styling
 st.markdown("""
 <style>
 
@@ -57,14 +63,18 @@ background:#020617;
 """, unsafe_allow_html=True)
 
 
+# Session state
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 
+# Login page
 if not st.session_state.logged_in:
 
     auth_page()
 
+
+# Main application
 else:
 
     with st.sidebar:
@@ -72,6 +82,7 @@ else:
         st.markdown("## 🤖 AI Nexus Studio")
 
         username = st.session_state.email.split("@")[0]
+
         st.success(f"Welcome {username}")
 
         st.markdown("---")
@@ -83,7 +94,7 @@ else:
                 "Coding Nexus",
                 "Data Analysis Nexus",
                 "Image Analysis Nexus",
-                "Knowledge Chatbot",
+                "Knowledge Chatbot"
             ]
         )
 
